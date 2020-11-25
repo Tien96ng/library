@@ -12,10 +12,27 @@
 </head>
 
 <body>
+    <!-- Button to Open the Form. -->
+    <button type="button" id="showFormBtn">Add Book</button>
 
-    <p>Hello, world!</p>
+    <form id="bookForm">
+        <label for="author">Author:</label> <br />
+        <input type="text" id="author" class="author" placeholder="Stephen King" /> <br />
 
-    <script src="js/script.js"></script>
+        <label for="title">Title:</label> <br />
+        <input type="text" id="title" class="title" placeholder="Salem's Lot" /> <br />
+        
+        <label for="numPages">Number of Pages:</label> <br />
+        <input type="number" id="numPages" class="numPages"/> <br />
+
+        <label for="read">Have you read the book?</label>
+        <input type="checkbox" id="read" class="read"/> <br />
+
+        <input type="submit" value="Add" />
+    </form> 
+
+
+    <script src="./script.js"></script>
 </body>
 
 </html>
