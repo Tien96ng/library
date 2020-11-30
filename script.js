@@ -1,7 +1,7 @@
 // Variables to call Elements by ID.
 const showFormBtn = document.getElementById("showFormBtn")
 const form = document.getElementById("bookForm")
-const library = document.getElementById("renderLibrary")
+const libraryDivContainer = document.getElementById("renderLibrary")
 
 // Initialized the Form to be hidden on load.
 form.style.display = "none"
@@ -38,6 +38,7 @@ form.addEventListener("submit", (event) => {
 
     // Pushes Obj to library array.
     myLibrary.push(newBook)
+    renderBook() // Works on Submission
     // Reset the form fields after submission.
     form.reset()
     alert(JSON.stringify(newBook)) // FOR DEBUGGING DELETE LATER!!
@@ -46,17 +47,37 @@ form.addEventListener("submit", (event) => {
 
 const renderBook = () => {
     let pNode = document.createElement("p")
+    pNode.classList.add("book")
 
 
     myLibrary.map(book => {
-        pNode.appendChild(book.author)
-        pNode.appendChild(book.title)
-        library.appendChild(pNode)
+        let authorText = document.createTextNode(`${book.author}`)
+        let titleText = document.createTextNode(`${book.title}`)
+        let numPagesText = document.createTextNode(`${book.numPages}`)
+        let readText = document.createTextNode(`${book.read}`) // Change this to check mark or x.
+
+
+        libraryDivContainer.appendChild(pNode.appendChild(authorText))
+        libraryDivContainer.appendChild(pNode.appendChild(titleText))
+        libraryDivContainer.appendChild(pNode.appendChild(numPagesText))
+        libraryDivContainer.appendChild(pNode.appendChild(readText))
     })
 }
 
-// Eventlistener for when the Library changes.
+document.getElementById("testRenderBook").addEventListener("click", () => {
+    myLibrary.length > 0 && renderBook()
+})
 
 
-document.getElementById("debugLibrary").addEventListener("click", () => alert(JSON.stringify(myLibrary))) // FOR DEBUGGING DELETE LATER!!
-// document.getElementById("debugLibrary").addEventListener("click", renderBook) // FOR DEBUGGING DELETE LATER!!
+document.getElementById("debugLibrary").addEventListener("click", () => {
+    alert(JSON.stringify(myLibrary))
+    alert(myLibrary[0].author)
+}) // FOR DEBUGGING DELETE LATER!!
+
+
+let testP = document.createElement("p")
+let testNode = document.createTextNode("test")
+let finalP = testP.appendChild(testNode)
+//libraryDivContainer.appendChild(finalP)
+
+
