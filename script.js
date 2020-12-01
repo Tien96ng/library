@@ -2,6 +2,7 @@
 const showFormBtn = document.getElementById("showFormBtn")
 const form = document.getElementById("bookForm")
 const libraryDivContainer = document.getElementById("renderLibrary")
+const pTags = document.querySelector("p")
 
 // Initialized the Form to be hidden on load.
 form.style.display = "none"
@@ -38,30 +39,21 @@ form.addEventListener("submit", (event) => {
 
     // Pushes Obj to library array.
     myLibrary.push(newBook)
-    renderBook() // Works on Submission
+    renderBook(newBook) // Works on Submission
     // Reset the form fields after submission.
     form.reset()
     alert(JSON.stringify(newBook)) // FOR DEBUGGING DELETE LATER!!
     return false
 })
 
-const renderBook = () => {
-    let pNode = document.createElement("p")
-    pNode.classList.add("book")
-
-
-    myLibrary.map(book => {
-        let authorText = document.createTextNode(`${book.author}`)
-        let titleText = document.createTextNode(`${book.title}`)
-        let numPagesText = document.createTextNode(`${book.numPages}`)
-        let readText = document.createTextNode(`${book.read}`) // Change this to check mark or x.
-
-
-        libraryDivContainer.appendChild(pNode.appendChild(authorText))
-        libraryDivContainer.appendChild(pNode.appendChild(titleText))
-        libraryDivContainer.appendChild(pNode.appendChild(numPagesText))
-        libraryDivContainer.appendChild(pNode.appendChild(readText))
-    })
+const renderBook = (book) => {
+    for (const [key, value] of Object.entries(book)) {
+        console.log(`${key}: ${value}`) // FOR DEBUGGING DELETE LATER!!
+        let pNode = document.createElement("p")
+        pNode.innerHTML = value
+        pNode.classList.add("bookDetail")
+        libraryDivContainer.append(pNode)
+    }
 }
 
 document.getElementById("testRenderBook").addEventListener("click", () => {
