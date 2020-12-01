@@ -2,7 +2,6 @@
 const showFormBtn = document.getElementById("showFormBtn")
 const form = document.getElementById("bookForm")
 const libraryDivContainer = document.getElementById("renderLibrary")
-const pTags = document.querySelector("p")
 
 // Initialized the Form to be hidden on load.
 form.style.display = "none"
@@ -12,10 +11,10 @@ let myLibrary = []
 let newBook
 
 // Book Constructor:
-function Book(author, title, numPages, read = false) {
+function Book(author, title, pages, read = false) {
     this.author = author,
     this.title = title,
-    this.numPages = numPages,
+    this.pages = pages,
     this.read = read
 }
 
@@ -33,43 +32,50 @@ form.addEventListener("submit", (event) => {
     newBook =  new Book(
         formValue.author.value,
         formValue.title.value,
-        formValue.numPages.value,
+        formValue.pages.value,
         formValue.read.checked
     )
 
     // Pushes Obj to library array.
     myLibrary.push(newBook)
-    renderBook(newBook) // Works on Submission
+    // Renders new book on Submission.
+    renderBook(newBook) 
     // Reset the form fields after submission.
     form.reset()
-    alert(JSON.stringify(newBook)) // FOR DEBUGGING DELETE LATER!!
     return false
 })
 
 const renderBook = (book) => {
+    // Create container to separate each book entry.
+    let bookContainerDiv = document.createElement("div")
+    // Add a Class for styling in CSS.
+    bookContainerDiv.classList.add("bookContainer")
+
+    // Append the Div to the Initial Container.
+    libraryDivContainer.appendChild(bookContainerDiv)
+
+    // Look through the book information entered to display details.
     for (const [key, value] of Object.entries(book)) {
-        console.log(`${key}: ${value}`) // FOR DEBUGGING DELETE LATER!!
+        // Create a P tag for every detail and append to page.
         let pNode = document.createElement("p")
-        pNode.innerHTML = value
+        let readBtn = document.createElement("button")
+
+        if(key === "pages") {
+            pNode.innerHTML = `Number of Pages: ${value}`
+        } else if(key === "read") {
+            value ?
+                pNode.innerHTML = "Read: Yes" :
+                pNode.innerHTML = "Read: No"
+        } else {
+            pNode.innerHTML = `${key.slice(0, 1).toUpperCase() + key.slice(1).toLowerCase()}: ${value}`
+        }
+
         pNode.classList.add("bookDetail")
-        libraryDivContainer.append(pNode)
+        bookContainerDiv.append(pNode)
     }
 }
-
-document.getElementById("testRenderBook").addEventListener("click", () => {
-    myLibrary.length > 0 && renderBook()
-})
-
 
 document.getElementById("debugLibrary").addEventListener("click", () => {
     alert(JSON.stringify(myLibrary))
     alert(myLibrary[0].author)
 }) // FOR DEBUGGING DELETE LATER!!
-
-
-let testP = document.createElement("p")
-let testNode = document.createTextNode("test")
-let finalP = testP.appendChild(testNode)
-//libraryDivContainer.appendChild(finalP)
-
-
