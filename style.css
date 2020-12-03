@@ -2,8 +2,29 @@
     color: red;
 }
 
+.deleteBookBtn {
+    background-color: blue;
+}
+
 .bookContainer {
     border: solid 2px;
     border-color: saddlebrown;
     padding: 10px;
+    margin: 10px;
+    max-width: 200px;
+}
+
+form {
+    display: inline-block; 
+}
+
+body {
+    text-align: center;
+}
+
+#renderLibrary {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }

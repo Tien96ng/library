@@ -2,6 +2,7 @@
 const showFormBtn = document.getElementById("showFormBtn")
 const form = document.getElementById("bookForm")
 const libraryDivContainer = document.getElementById("renderLibrary")
+const removeBookBtnQuery = document.getElementsByClassName("deleteBookBtn")
 
 // Initialized the Form to be hidden on load.
 form.style.display = "none"
@@ -9,6 +10,7 @@ form.style.display = "none"
 // Initialize the Library Array and new book variable.
 let myLibrary = []
 let newBook
+let bookCount 
 
 // Book Constructor:
 function Book(author, title, pages, read = false) {
@@ -46,13 +48,19 @@ form.addEventListener("submit", (event) => {
 })
 
 const renderBook = (book) => {
+    // Create Button to delete book.
+    let removeBookBtn = document.createElement("button")
+    removeBookBtn.innerText = "Remove"
     // Create container to separate each book entry.
     let bookContainerDiv = document.createElement("div")
-    // Add a Class for styling in CSS.
+    // Add a Class for styling in CSS and Eventlistener handling.
     bookContainerDiv.classList.add("bookContainer")
+    removeBookBtn.classList.add("deleteBookBtn")
+    removeBookBtn.setAttribute("type", "button")
 
     // Append the Div to the Initial Container.
     libraryDivContainer.appendChild(bookContainerDiv)
+
 
     // Look through the book information entered to display details.
     for (const [key, value] of Object.entries(book)) {
@@ -73,6 +81,8 @@ const renderBook = (book) => {
         pNode.classList.add("bookDetail")
         bookContainerDiv.append(pNode)
     }
+    bookContainerDiv.appendChild(removeBookBtn)
+    removeBookBtn.addEventListener("click", () => alert("Clicked!"))
 }
 
 document.getElementById("debugLibrary").addEventListener("click", () => {
