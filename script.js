@@ -3,7 +3,6 @@ const showFormBtn = document.getElementById("showFormBtn")
 const form = document.getElementById("bookForm")
 const libraryDivContainer = document.getElementById("renderLibrary")
 const removeBookBtnQuery = document.getElementsByClassName("deleteBookBtn")
-const errorMsg = document.getElementById("errorHandlingMsg")
 
 // Initialized the Form to be hidden on load.
 form.style.display = "none"
@@ -31,30 +30,22 @@ showFormBtn.addEventListener("click", () => {
 form.addEventListener("submit", (event) => {
     event.preventDefault()
     let formValue = event.target.elements
-    if(
-        formValue.author.value === "" ||
-        formValue.title.value  === "" ||
-        formValue.pages.value  === ""
-    ) {
-        errorMsg.innerHTML = "PLEASE FILL OUT INFORMATION"
-        errorMsg.style.color = "Red"
-    } else {
-        newBook =  new Book(
-            formValue.author.value,
-            formValue.title.value,
-            formValue.pages.value,
-            formValue.read.checked
-        )
-    
-        // Pushes Obj to library array.
-        myLibrary.push(newBook)
-        // Renders new book on Submission.
-        renderBook(newBook) 
-        // Reset the form fields after submission.
-        form.reset()
-        errorMsg.innerHTML = ""
-        return false
-    }
+
+    newBook =  new Book(
+        formValue.author.value,
+        formValue.title.value,
+        formValue.pages.value,
+        formValue.read.checked
+    )
+
+    // Pushes Obj to library array.
+    myLibrary.push(newBook)
+    // Renders new book on Submission.
+    renderBook(newBook) 
+    // Reset the form fields after submission.
+    form.reset()
+    errorMsg.innerHTML = ""
+    return false
 })
 
 

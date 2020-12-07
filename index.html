@@ -18,16 +18,15 @@
 
     <div class="form">
         <form id="bookForm" action="" method="POST">
-            <div id="errorHandlingMsg"></div>
-            
+
             <label for="author">Author:</label>
-            <input type="text" id="author" class="author" placeholder="Stephen King" /> <br />
+            <input type="text" id="author" class="author" placeholder="Stephen King" required /> <br />
     
             <label for="title">Title:</label>
-            <input type="text" id="title" class="title" placeholder="Salem's Lot" /> <br />
+            <input type="text" id="title" class="title" placeholder="Salem's Lot" required/> <br />
             
             <label for="pages">Number of Pages:</label>
-            <input type="number" id="pages" class="pages"/> <br />
+            <input type="number" id="pages" class="pages" min="1" required /> <br />
     
             <label for="read">Have you read the book?</label>
             <input type="checkbox" id="read" class="read"/> <br />
