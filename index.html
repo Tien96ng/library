@@ -12,9 +12,12 @@
 </head>
 
 <body>
-    <h1 id="title"> Library App </h1>
-    <!-- Button to Open the Form. -->
-    <button class="trigger" type="button">+ Add Book</button>
+    <div id="headerComponents">
+        <h1 id="title"> Library App </h1>
+        <!-- Button to Open the Form. -->
+        <button class="trigger" type="button">+ Add Book</button>
+    </div>
+    
 
     <div class="modal">
         <div class="modalContent">
@@ -27,19 +30,23 @@
             <div class="modalBody">
                 <form id="bookForm" action="" method="POST">
 
-                    <label for="author">Author:</label>
+                    <label for="author">Author:</label><br/>
                     <input type="text" id="author" class="author" placeholder="Stephen King" required /> <br />
             
-                    <label for="title">Title:</label>
+                    <label for="title">Title:</label><br/>
                     <input type="text" id="title" class="title" placeholder="Salem's Lot" required/> <br />
                     
-                    <label for="pages">Number of Pages:</label>
+                    <label for="pages">Number of Pages:</label><br/>
                     <input type="number" id="pages" class="pages" min="1" required /> <br />
+                    
+                    <span class="readQuestion">Have you read the book?</span>
+                    <label class="switch" for="read">
+                        <input type="checkbox" id="read" class="read"/>  
+                        <span class="slider round"></span>
+                    </label>
+                    <br />
             
-                    <label for="read">Have you read the book?</label>
-                    <input type="checkbox" id="read" class="read"/> <br />
-            
-                    <input type="submit" value="Submit" class="submitBtn" />
+                    <button type="submit" class="submitBtn"> Submit </button>
                 </form> 
             </div>
         </div>
