@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>Library App</title>
-    <meta name="author" content="">
+    <meta name="author" content="Tien Nguyen">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel = "icon" href ="https://cdn.iconscout.com/icon/premium/png-256-thumb/books-1438306-1216751.png" type = "image/x-icon"> 
 
     <link href="./style.css" rel="stylesheet">
 </head>
@@ -14,6 +16,13 @@
 <body>
     <div id="headerComponents">
         <h1 id="title"> Library App </h1>
+        <p>This is a project for 
+            <a href="https://www.theodinproject.com/lessons/library" target="_blank">The Odin Project</a> 
+            in which I have to make a library using Object Constructors and LocalStorage.
+        </p>
+        <p>
+            You can also view the <a href="https://github.com/Tien96ng/library" target="_blank"> Github Repository </a> of this project.</p>
+        </p>
         <!-- Button to Open the Form. -->
         <button class="trigger" type="button">+ Add Book</button>
     </div>
@@ -31,13 +40,13 @@
                 <form id="bookForm" action="" method="POST">
 
                     <label for="author">Author:</label><br/>
-                    <input type="text" id="author" class="author" placeholder="Stephen King" required /> <br />
+                    <input type="text" id="author" class="author" placeholder="Stephen King"  /> <br />
             
                     <label for="title">Title:</label><br/>
-                    <input type="text" id="title" class="title" placeholder="Salem's Lot" required/> <br />
+                    <input type="text" id="title" class="title" placeholder="Salem's Lot" /> <br />
                     
                     <label for="pages">Number of Pages:</label><br/>
-                    <input type="number" id="pages" class="pages" min="1" required /> <br />
+                    <input type="number" id="pages" class="pages" min="1"  /> <br />
                     
                     <span class="readQuestion">Have you read the book?</span>
                     <label class="switch" for="read">

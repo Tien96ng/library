@@ -3,33 +3,31 @@ const showFormBtn = document.getElementById("showFormBtn"),
     form = document.getElementById("bookForm"),
     libraryDivContainer = document.getElementById("renderLibrary"),
     removeBookBtnQuery = document.getElementsByClassName("deleteBookBtn"),
-    openModalTrigger = document.querySelector('.trigger'),
-    closeModalTrigger = document.querySelector('.close'),
-    modal = document.querySelector('.modal')
-
-// Initialized the Form to be hidden on load.
-// form.style.display = "none"
+    openModalTrigger = document.querySelector(".trigger"),
+    closeModalTrigger = document.querySelector(".close"),
+    modal = document.querySelector(".modal")
 
 // Initialize the Library Array and new book variable.
 let myLibrary = []
 let newBook
 
 // Book Constructor:
-function Book(author, title, pages, read = false) {
-    this.author = author,
+function Book(title, author, pages, read = false) {
     this.title = title,
+    this.author = author,
     this.pages = pages,
     this.read = read
 }
 
 // Modal EventListeners for Open, Close, and click outside Modal.
-openModalTrigger.addEventListener('click', () => modal.classList.add('open'))
-closeModalTrigger.addEventListener('click', () => modal.classList.remove('open'))
-window.addEventListener('click', (event) => {
+openModalTrigger.addEventListener("click", () => modal.classList.add("open"))
+closeModalTrigger.addEventListener("click", () => modal.classList.remove("open"))
+window.addEventListener("click", (event) => {
     if(event.target === modal) {
-        modal.classList.remove('open')
+        modal.classList.remove("open")
     }
 })
+
 
 
 // Eventlistener to read inputs on form submission.
@@ -38,8 +36,8 @@ form.addEventListener("submit", (event) => {
     let formValue = event.target.elements
 
     newBook =  new Book(
-        formValue.author.value,
         formValue.title.value,
+        formValue.author.value,
         formValue.pages.value,
         formValue.read.checked
     )
@@ -79,19 +77,24 @@ const renderBook = (book) => {
 
         // Logic for displaying book information to screen.
         if(key === "pages") {
-            pNode.innerHTML = `Number of Pages: ${value}`
+            pNode.innerHTML = `Number of Pages: ` + `<span class="numberStyle">` + value + `</span>`
+            pNode.classList.add("numPages")
         } else if(key === "read") {
 
             if(value) {
                 btnNode.innerHTML = "Read: Yes"
-                btnNode.style.backgroundColor = "Green"
+                btnNode.style.backgroundColor = "limegreen"
             } else {
                 btnNode.innerHTML = "Read: No"
                 btnNode.style.backgroundColor = "Red"
             }
 
+        } else if(key === "author"){
+            pNode.innerHTML = `by ${value}`
+            pNode.classList.add("bookAuthor")
         } else {
-            pNode.innerHTML = `${key.slice(0, 1).toUpperCase() + key.slice(1).toLowerCase()}: ${value}`
+            pNode.innerHTML = value
+            pNode.classList.add("bookTitle")
         }
 
         pNode.classList.add("bookDetail")
@@ -106,7 +109,6 @@ const renderBook = (book) => {
         // Loop through the myLibrary array until finding book to remove on screen and within the array.
         myLibrary.map((value, index) => {
             let authorElement = bookContainerDiv.firstChild.innerHTML.slice(8)
-            alert(myLibrary[index].author === authorElement) // FOR DEBUGGING, REMOVE LATER!!!
             if(myLibrary[index].author === authorElement) {
                 myLibrary.splice(index, 1)
                 bookContainerDiv.remove()
@@ -122,8 +124,10 @@ const renderBook = (book) => {
             btnNode.style.backgroundColor = "Red"
             btnNode.innerText = "Read: No"
         } else {
-            btnNode.style.backgroundColor = "Green"
+            btnNode.style.backgroundColor = "limegreen"
             btnNode.innerText = "Read: Yes"
         }
     })
 }
+
+
