@@ -48,11 +48,14 @@ form.addEventListener("submit", (event) => {
 
 
 const renderBook = (book) => {
-    // Create Button to delete book.
+    // Create Buttons to delete book and for read toggle.
     let removeBookBtn = document.createElement("button")
+    let btnNode = document.createElement("button")
     removeBookBtn.innerText = "Remove"
+
     // Create container to separate each book entry.
     let bookContainerDiv = document.createElement("div")
+
     // Add a Class for styling in CSS and Eventlistener handling.
     bookContainerDiv.classList.add("bookContainer")
     removeBookBtn.classList.add("deleteBookBtn")
@@ -60,7 +63,6 @@ const renderBook = (book) => {
 
     // Append the Div to the Initial Container.
     libraryDivContainer.appendChild(bookContainerDiv)
-
 
     // Look through the book information entered to display details.
     for (const [key, value] of Object.entries(book)) {
@@ -71,15 +73,24 @@ const renderBook = (book) => {
         if(key === "pages") {
             pNode.innerHTML = `Number of Pages: ${value}`
         } else if(key === "read") {
-            value ?
-                pNode.innerHTML = "Read: Yes" :
-                pNode.innerHTML = "Read: No"
+
+            if(value) {
+                btnNode.innerHTML = "Read: Yes"
+                btnNode.style.backgroundColor = "Green"
+            } else {
+                btnNode.innerHTML = "Read: No"
+                btnNode.style.backgroundColor = "Red"
+            }
+
         } else {
             pNode.innerHTML = `${key.slice(0, 1).toUpperCase() + key.slice(1).toLowerCase()}: ${value}`
         }
 
         pNode.classList.add("bookDetail")
+        btnNode.classList.add("readBtn")
+        btnNode.setAttribute("type", "button")
         bookContainerDiv.append(pNode)
+        bookContainerDiv.append(btnNode)
     }
     bookContainerDiv.appendChild(removeBookBtn)
     removeBookBtn.addEventListener("click", () => {
@@ -96,8 +107,19 @@ const renderBook = (book) => {
         })
         
     })
+
+    btnNode.addEventListener("click", () => {
+        if(btnNode.innerHTML.split(" ")[1] === "Yes") {
+            btnNode.style.backgroundColor = "Red"
+            btnNode.innerText = "Read: No"
+        } else {
+            btnNode.style.backgroundColor = "Green"
+            btnNode.innerText = "Read: Yes"
+        }
+    })
 }
 
+const readToggleBtn = document.getElementsByClassName("readBtn")
 
 
 
