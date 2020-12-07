@@ -10,7 +10,6 @@ form.style.display = "none"
 // Initialize the Library Array and new book variable.
 let myLibrary = []
 let newBook
-let bookCount 
 
 // Book Constructor:
 function Book(author, title, pages, read = false) {
@@ -47,6 +46,7 @@ form.addEventListener("submit", (event) => {
     return false
 })
 
+
 const renderBook = (book) => {
     // Create Button to delete book.
     let removeBookBtn = document.createElement("button")
@@ -66,8 +66,8 @@ const renderBook = (book) => {
     for (const [key, value] of Object.entries(book)) {
         // Create a P tag for every detail and append to page.
         let pNode = document.createElement("p")
-        let readBtn = document.createElement("button")
 
+        // Logic for displaying book information to screen.
         if(key === "pages") {
             pNode.innerHTML = `Number of Pages: ${value}`
         } else if(key === "read") {
@@ -82,10 +82,25 @@ const renderBook = (book) => {
         bookContainerDiv.append(pNode)
     }
     bookContainerDiv.appendChild(removeBookBtn)
-    removeBookBtn.addEventListener("click", () => alert("Clicked!"))
+    removeBookBtn.addEventListener("click", () => {
+
+        // Loop through the myLibrary array until finding book to remove on screen and within the array.
+        myLibrary.map((value, index) => {
+            let authorElement = bookContainerDiv.firstChild.innerHTML.slice(8)
+            alert(myLibrary[index].author === authorElement) // FOR DEBUGGING, REMOVE LATER!!!
+            if(myLibrary[index].author === authorElement) {
+                myLibrary.splice(index, 1)
+                bookContainerDiv.remove()
+            }
+            
+        })
+        
+    })
 }
+
+
+
 
 document.getElementById("debugLibrary").addEventListener("click", () => {
     alert(JSON.stringify(myLibrary))
-    alert(myLibrary[0].author)
 }) // FOR DEBUGGING DELETE LATER!!

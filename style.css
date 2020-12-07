@@ -14,17 +14,15 @@
     max-width: 200px;
 }
 
-form {
-    display: inline-block; 
-}
-
-body {
-    text-align: center;
-}
-
 #renderLibrary {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+}
+
+form {
+    text-align: left;
+    display: flex;
     justify-content: center;
 }
