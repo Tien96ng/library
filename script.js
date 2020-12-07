@@ -28,8 +28,6 @@ window.addEventListener("click", (event) => {
     }
 })
 
-
-
 // Eventlistener to read inputs on form submission.
 form.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -51,7 +49,6 @@ form.addEventListener("submit", (event) => {
     modal.classList.remove('open');
     return false
 })
-
 
 const renderBook = (book) => {
     // Create Buttons to delete book and for read toggle.
@@ -108,7 +105,8 @@ const renderBook = (book) => {
 
         // Loop through the myLibrary array until finding book to remove on screen and within the array.
         myLibrary.map((value, index) => {
-            let authorElement = bookContainerDiv.firstChild.innerHTML.slice(8)
+            let authorElement = bookContainerDiv.childNodes[1].innerHTML.slice(3)
+            alert(authorElement)
             if(myLibrary[index].author === authorElement) {
                 myLibrary.splice(index, 1)
                 bookContainerDiv.remove()
