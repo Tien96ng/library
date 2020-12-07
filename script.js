@@ -1,11 +1,14 @@
 // Variables to call Elements by ID.
-const showFormBtn = document.getElementById("showFormBtn")
-const form = document.getElementById("bookForm")
-const libraryDivContainer = document.getElementById("renderLibrary")
-const removeBookBtnQuery = document.getElementsByClassName("deleteBookBtn")
+const showFormBtn = document.getElementById("showFormBtn"),
+    form = document.getElementById("bookForm"),
+    libraryDivContainer = document.getElementById("renderLibrary"),
+    removeBookBtnQuery = document.getElementsByClassName("deleteBookBtn"),
+    openModalTrigger = document.querySelector('.trigger'),
+    closeModalTrigger = document.querySelector('.close'),
+    modal = document.querySelector('.modal')
 
 // Initialized the Form to be hidden on load.
-form.style.display = "none"
+// form.style.display = "none"
 
 // Initialize the Library Array and new book variable.
 let myLibrary = []
@@ -19,12 +22,15 @@ function Book(author, title, pages, read = false) {
     this.read = read
 }
 
-// Eventlistener to display Book form when button is clicked.
-showFormBtn.addEventListener("click", () => {
-    form.style.display === "none" ?
-        form.style.display = "block" :
-        form.style.display = "none"
+// Modal EventListeners for Open, Close, and click outside Modal.
+openModalTrigger.addEventListener('click', () => modal.classList.add('open'))
+closeModalTrigger.addEventListener('click', () => modal.classList.remove('open'))
+window.addEventListener('click', (event) => {
+    if(event.target === modal) {
+        modal.classList.remove('open')
+    }
 })
+
 
 // Eventlistener to read inputs on form submission.
 form.addEventListener("submit", (event) => {
@@ -44,7 +50,7 @@ form.addEventListener("submit", (event) => {
     renderBook(newBook) 
     // Reset the form fields after submission.
     form.reset()
-    errorMsg.innerHTML = ""
+    modal.classList.remove('open');
     return false
 })
 
@@ -110,6 +116,7 @@ const renderBook = (book) => {
         
     })
 
+    // EventHandler to toggle the read button.
     btnNode.addEventListener("click", () => {
         if(btnNode.innerHTML.split(" ")[1] === "Yes") {
             btnNode.style.backgroundColor = "Red"
@@ -120,13 +127,3 @@ const renderBook = (book) => {
         }
     })
 }
-
-const readToggleBtn = document.getElementsByClassName("readBtn")
-
-
-/*
-document.getElementById("debugLibrary").addEventListener("click", () => {
-    alert(JSON.stringify(myLibrary))
-}) // FOR DEBUGGING DELETE LATER!!
-
-*/

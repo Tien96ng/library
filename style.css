@@ -1,36 +1,118 @@
 body {
-    text-align: center;
+  text-align: center;
 }
 
 .bookDetail {
-    color: red;
+  color: red;
 }
 
 .deleteBookBtn {
-    background-color: blue;
+  background-color: blue;
 }
 
 .bookContainer {
-    border: solid 2px;
-    border-color: saddlebrown;
-    padding: 10px;
-    margin: 10px;
-    max-width: 200px;
+  border: solid 2px;
+  border-color: saddlebrown;
+  padding: 10px;
+  margin: 10px;
+  max-width: 200px;
 }
 
 #renderLibrary {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+​ button {
+  margin: 5px;
 }
 
-form {
-    display: inline-block;
-    text-align: left;
-    padding-left: 45%;
+button:active,
+button:focus,
+.submitBtn:active {
+  outline: none;
 }
 
-button {
-    margin: 5px;
+.trigger,
+.submitBtn {
+  border-radius: 10px;
+  border-style: none;
+  padding: 10px;
+  font-size: large;
+  background-color: #5c9eff;
+  color: white;
+}
+
+.trigger:hover,
+.submitBtn:hover {
+  cursor: pointer;
+}
+
+/** Modal Styles **/
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 0px;
+}
+
+.modalContent {
+  background-color: white;
+  width: 80%;
+  max-width: 640px;
+  margin: 3rem auto;
+  border-radius: 4px;
+  padding: 4rem 2rem;
+  position: relative;
+  animation: 0.5s slideDown;
+}
+
+/** custom animation **/
+@keyframes slideDown {
+  from {
+    top: -100px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.open {
+  display: block;
+}
+
+.modalTitle {
+  text-align: center;
+  font-family: sans-serif;
+  border-radius: 35px;
+}
+
+.close {
+  position: absolute;
+  color: #ddd7ce;
+  top: 0px;
+  left: 10px;
+  font-size: 4rem;
+  background: transparent;
+  border: 0;
+  outline: 0;
+}
+
+.close:hover {
+  cursor: pointer;
+}
+
+.modalBody {
+  padding: 2rem;
+  text-align: center;
+  font-family: sans-serif;
+  line-height: 2rem;
 }

@@ -14,29 +14,38 @@
 <body>
     <h1 id="title"> Library App </h1>
     <!-- Button to Open the Form. -->
-    <button type="button" id="showFormBtn">+</button>
+    <button class="trigger" type="button">+ Add Book</button>
 
-    <div class="form">
-        <form id="bookForm" action="" method="POST">
+    <div class="modal">
+        <div class="modalContent">
+            <div class="modalHeader">
+                <h1 class="modalTitle"> Add a Book </h1>
+                <button type="button" class="close">
+                <span>&times;</span>
+                </button>
+            </div>
+            <div class="modalBody">
+                <form id="bookForm" action="" method="POST">
 
-            <label for="author">Author:</label>
-            <input type="text" id="author" class="author" placeholder="Stephen King" required /> <br />
-    
-            <label for="title">Title:</label>
-            <input type="text" id="title" class="title" placeholder="Salem's Lot" required/> <br />
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" class="author" placeholder="Stephen King" required /> <br />
             
-            <label for="pages">Number of Pages:</label>
-            <input type="number" id="pages" class="pages" min="1" required /> <br />
-    
-            <label for="read">Have you read the book?</label>
-            <input type="checkbox" id="read" class="read"/> <br />
-    
-            <input type="submit" value="Add" />
-        </form> 
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" class="title" placeholder="Salem's Lot" required/> <br />
+                    
+                    <label for="pages">Number of Pages:</label>
+                    <input type="number" id="pages" class="pages" min="1" required /> <br />
+            
+                    <label for="read">Have you read the book?</label>
+                    <input type="checkbox" id="read" class="read"/> <br />
+            
+                    <input type="submit" value="Submit" class="submitBtn" />
+                </form> 
+            </div>
+        </div>
     </div>
+
     
-
-
     <div id="renderLibrary"> 
     </div>
     <script src="./script.js"></script>
