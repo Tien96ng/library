@@ -2,7 +2,7 @@
 
 > ## From The Odin Project's [curriculum](https://www.theodinproject.com/courses/javascript/lessons/library)
 
-> - [Live demo](https://locallibrary-app.web.app/) :shipit:
+> - [Live demo](https://locallibrary-app.web.app/) :books:
 
 ## Assignment
 > Create a library where books are stored in localStorage or/and Firebase.
