@@ -9,7 +9,7 @@
 
 ## Acknowledgments
 - localStorage [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API)
-- Firebase [Google Docs](https://firebase.google.com/docs/)
+- Firebase [Google Docs](https://firebase.google.com/docs/hosting)
 
 ### Built with: 
  * HTML
