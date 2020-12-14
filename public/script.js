@@ -109,12 +109,10 @@ const renderBook = (book) => {
     let localDB = JSON.parse(localStorage.getItem("myLibrary"))
 
     removeBookBtn.addEventListener("click", () => {
-
+gi
         // Loop through the myLibrary array until finding book to remove on screen and within the array.
         myLibrary.map((value, index) => {
             let authorElement = bookContainerDiv.childNodes[1].innerHTML.slice(3)
-            console.log(authorElement)
-            console.log(localDB[index])
             if(myLibrary[index].author === authorElement) {
                 myLibrary.splice(index, 1)
                 localDB.splice(index, 1)
@@ -143,9 +141,7 @@ const renderBook = (book) => {
 
 // Render myLibrary through Localstorage when page is refreshed.
 function renderLibraryStorage() {
-    if(!localStorage.myLibrary) {
-        alert("Nothing!")
-    } else {
+    if(localStorage.myLibrary) {
         let getBooks = JSON.parse(localStorage.getItem("myLibrary"))
         myLibrary = getBooks
         myLibrary.map((value) => {
