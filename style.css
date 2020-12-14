@@ -253,3 +253,11 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+@media only screen and (max-width: 800px) {
+  body {
+    margin: 1rem 1rem 1rem 1rem;
+  
+  }
+
+}

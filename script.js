@@ -10,6 +10,7 @@ const showFormBtn = document.getElementById("showFormBtn"),
 // Initialize the Library Array and new book variable.
 let myLibrary = []
 let newBook
+let tempLibrary
 
 // Book Constructor:
 function Book(title, author, pages, read = false) {
@@ -46,7 +47,9 @@ form.addEventListener("submit", (event) => {
     renderBook(newBook) 
     // Reset the form fields after submission.
     form.reset()
-    modal.classList.remove('open');
+    modal.classList.remove('open')
+    window.localStorage.clear()
+    window.localStorage.setItem("myLibrary", JSON.stringify(myLibrary))
     return false
 })
 
@@ -101,18 +104,28 @@ const renderBook = (book) => {
         bookContainerDiv.append(btnNode)
     }
     bookContainerDiv.appendChild(removeBookBtn)
+
+    // Parse the LocalStorage in preparations to remove any books.
+    let localDB = JSON.parse(localStorage.getItem("myLibrary"))
+
     removeBookBtn.addEventListener("click", () => {
 
         // Loop through the myLibrary array until finding book to remove on screen and within the array.
         myLibrary.map((value, index) => {
             let authorElement = bookContainerDiv.childNodes[1].innerHTML.slice(3)
-            alert(authorElement)
+            console.log(authorElement)
+            console.log(localDB[index])
             if(myLibrary[index].author === authorElement) {
                 myLibrary.splice(index, 1)
+                localDB.splice(index, 1)
                 bookContainerDiv.remove()
+                // Stringify the localstorage before readding it.
+                tempLibrary = JSON.stringify(localDB)
+                localStorage.setItem("myLibrary", tempLibrary)
             }
             
         })
+
         
     })
 
@@ -127,5 +140,20 @@ const renderBook = (book) => {
         }
     })
 }
+
+// Render myLibrary through Localstorage when page is refreshed.
+function renderLibraryStorage() {
+    if(!localStorage.myLibrary) {
+        alert("Nothing!")
+    } else {
+        let getBooks = JSON.parse(localStorage.getItem("myLibrary"))
+        myLibrary = getBooks
+        myLibrary.map((value) => {
+            renderBook(value)
+        })
+    }
+}
+
+renderLibraryStorage()
 
 
